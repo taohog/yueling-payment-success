@@ -154,13 +154,16 @@
 
     <script>
         function handleConfirm() {
-            // ✅ 已添加 Purchase 轉化事件（Meta 廣告可追蹤）
+            // 1. 先觸發 Purchase 事件，確保 Meta 收到數據
             fbq('track', 'Purchase', {
                 value: 450.34,
                 currency: 'HKD'
             });
-            
-            window.open("https://wa.me/85363520028", "_blank");
+
+            // 2. 延遲 1.5 秒再跳轉 WhatsApp，給 Meta 足夠的時間發送數據
+            setTimeout(function() {
+                window.open("https://wa.me/85363520028", "_blank");
+            }, 1500);
         }
     </script>
 </body>
